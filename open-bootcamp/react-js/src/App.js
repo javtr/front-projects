@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import LifeCycleClass from "./hooks/lifeCycle/lifecycleClass";
-import LifeCycleFunction from "./hooks/lifeCycle/lijecycleFunction";
+import TaskListComponent from "./components/container/task_list";
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <LifeCycleClass></LifeCycleClass> */}
-        <LifeCycleFunction></LifeCycleFunction>
+      <TaskListComponent></TaskListComponent>
       </div>
     );
   }
