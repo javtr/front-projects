@@ -28,6 +28,7 @@ const TaskListComponent = () => {
     <div>
       <div className="col-12">
         <div className="card">
+
           <div className="card-header p-3">
             <h5>Your Task</h5>
           </div>
@@ -51,6 +52,8 @@ const TaskListComponent = () => {
               </tbody>
             </table>
           </div>
+
+          
         </div>
       </div>
     </div>

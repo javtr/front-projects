@@ -25,8 +25,6 @@ function TaskComponent({ task }) {
       <td className="align-middle">
         <span>{task.completed? 'Completed':'Pending'}</span>
       </td>
-
-
     </tr>
   );
 }
