@@ -4,15 +4,29 @@ import { LEVELS } from "../../models/levels.enum";
 import TaskComponent from "../pure/task";
 
 const TaskListComponent = () => {
-  const defaultTask = new Task(
-    "example",
-    "default description",
-    false,
-    LEVELS.NORMAL
-  );
+  const taskArray = [
+    new Task(
+      "example",
+      "default description",
+      true,
+      LEVELS.URGENT
+    ),
+    new Task(
+      "example",
+      "default description",
+      true,
+      LEVELS.URGENT
+    ),
+    new Task(
+      "example",
+      "default description",
+      true,
+      LEVELS.URGENT
+    )
+  ]
 
   // estado del componente
-  const [tasks, setTasks] = useState(defaultTask);
+  const [tasks, setTasks] = useState(taskArray);
   const [loading, setLoading] = useState(true);
 
   // ciclo de vida del componente
@@ -23,6 +37,14 @@ const TaskListComponent = () => {
       console.log("el componente fue desmontado");
     };
   }, [tasks]);
+
+  function updateCompleted(task){
+    const taskIndex = tasks.indexOf(task);
+    const taskTemp = [...tasks];
+    taskTemp[taskIndex].completed = !taskTemp[taskIndex].completed
+    setTasks(taskTemp)
+  }
+
 
   return (
     <div>
@@ -48,7 +70,14 @@ const TaskListComponent = () => {
                 </tr>
               </thead>
               <tbody>
-                <TaskComponent task={defaultTask}></TaskComponent>
+
+                {tasks.map((task,index)=>{
+                  return(
+                  <TaskComponent key={index} task={task} completed={updateCompleted}>
+                  </TaskComponent>
+                  )
+                })}
+
               </tbody>
             </table>
           </div>

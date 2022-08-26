@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 //! los estilos personalizados van delante de bootstrap 
 //! de lo contrario bootstrap los pisa
