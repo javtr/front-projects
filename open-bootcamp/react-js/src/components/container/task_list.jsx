@@ -2,26 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Task } from "../../models/task.class";
 import { LEVELS } from "../../models/levels.enum";
 import TaskComponent from "../pure/task";
+import TaskForm from "../../components/pure/forms/taskForm";
+
 
 const TaskListComponent = () => {
   const taskArray = [
     new Task(
-      "example",
+      "tarea 1",
       "default description",
       true,
+      LEVELS.BLOCKING
+    ),
+    new Task(
+      "2",
+      "ak,jjfdsjklflk",
+      false,
       LEVELS.URGENT
     ),
     new Task(
-      "example",
-      "default description",
+      "tercera",
+      "description",
       true,
-      LEVELS.URGENT
-    ),
-    new Task(
-      "example",
-      "default description",
-      true,
-      LEVELS.URGENT
+      LEVELS.NORMAL
     )
   ]
 
@@ -44,6 +46,19 @@ const TaskListComponent = () => {
     taskTemp[taskIndex].completed = !taskTemp[taskIndex].completed
     setTasks(taskTemp)
   }
+
+  function deleteTask(task){
+    const taskIndex = tasks.indexOf(task);
+    const taskTemp = [...tasks];
+    taskTemp.splice(taskIndex,1);
+    setTasks(taskTemp)
+  }
+
+  function addTask(task){
+    const taskTemp = [...tasks];
+    taskTemp.push(task);
+    setTasks(taskTemp)
+  }  
 
 
   return (
@@ -73,7 +88,7 @@ const TaskListComponent = () => {
 
                 {tasks.map((task,index)=>{
                   return(
-                  <TaskComponent key={index} task={task} completed={updateCompleted}>
+                  <TaskComponent key={index} task={task} completed={updateCompleted} remove={deleteTask}>
                   </TaskComponent>
                   )
                 })}
@@ -81,9 +96,9 @@ const TaskListComponent = () => {
               </tbody>
             </table>
           </div>
-
           
         </div>
+        <TaskForm add={addTask} ></TaskForm>
       </div>
     </div>
   );

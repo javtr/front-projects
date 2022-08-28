@@ -4,7 +4,7 @@ import { Task } from "../../models/task.class";
 import "../../styles/task.scss";
 import { LEVELS } from "../../models/levels.enum";
 
-function TaskComponent({ task, completed }) {
+function TaskComponent({ task, completed, remove }) {
   useEffect(() => {
     console.log("tarea creada");
     return () => {
@@ -39,26 +39,42 @@ function TaskComponent({ task, completed }) {
 
   function taskCompleted() {
     if (task.completed) {
-      return <i onClick={()=> completed(task)}  className="bi-toggle-on" style={{ color: "green" }}></i>;
+      return (
+        <i
+          onClick={() => completed(task)}
+          className="bi-toggle-on"
+          style={{ color: "green" }}
+        ></i>
+      );
     } else {
-      return <i onClick={()=> completed(task)} className="bi-toggle-off" style={{ color: "red" }}></i>;
+      return (
+        <i
+          onClick={() => completed(task)}
+          className="bi-toggle-off"
+          style={{ color: "red" }}
+        ></i>
+      );
     }
   }
 
   return (
-    <tr className="fw-normal">
-      <th>
-        <span className="ms-2">{task.name}</span>
-      </th>
-      <td className="align-middle">
-        <span>{task.description}</span>
-      </td>
-      <td className="align-middle">{taskLevelBadge()}</td>
-      <td className="align-middle">
-        {taskCompleted()}
-        <i className="bi-trash" style={{ color: "tomato" }}></i>
-      </td>
-    </tr>
+      <tr className="fw-normal">
+        <th>
+          <span className="ms-2">{task.name}</span>
+        </th>
+        <td className="align-middle">
+          <span>{task.description}</span>
+        </td>
+        <td className="align-middle">{taskLevelBadge()}</td>
+        <td className="align-middle">
+          {taskCompleted()}
+          <i
+            onClick={() => remove(task)}
+            className="bi-trash"
+            style={{ color: "tomato" }}
+          ></i>
+        </td>
+      </tr>
   );
 }
 
