@@ -4,28 +4,12 @@ import { LEVELS } from "../../models/levels.enum";
 import TaskComponent from "../pure/task";
 import TaskForm from "../../components/pure/forms/taskForm";
 
-
 const TaskListComponent = () => {
   const taskArray = [
-    new Task(
-      "tarea 1",
-      "default description",
-      true,
-      LEVELS.BLOCKING
-    ),
-    new Task(
-      "2",
-      "ak,jjfdsjklflk",
-      false,
-      LEVELS.URGENT
-    ),
-    new Task(
-      "tercera",
-      "description",
-      true,
-      LEVELS.NORMAL
-    )
-  ]
+    new Task("tarea 1", "default description", true, LEVELS.BLOCKING),
+    new Task("2", "ak,jjfdsjklflk", false, LEVELS.URGENT),
+    new Task("tercera", "description", true, LEVELS.NORMAL),
+  ];
 
   // estado del componente
   const [tasks, setTasks] = useState(taskArray);
@@ -40,65 +24,79 @@ const TaskListComponent = () => {
     };
   }, [tasks]);
 
-  function updateCompleted(task){
+  function updateCompleted(task) {
     const taskIndex = tasks.indexOf(task);
     const taskTemp = [...tasks];
-    taskTemp[taskIndex].completed = !taskTemp[taskIndex].completed
-    setTasks(taskTemp)
+    taskTemp[taskIndex].completed = !taskTemp[taskIndex].completed;
+    setTasks(taskTemp);
   }
 
-  function deleteTask(task){
+  function deleteTask(task) {
     const taskIndex = tasks.indexOf(task);
     const taskTemp = [...tasks];
-    taskTemp.splice(taskIndex,1);
-    setTasks(taskTemp)
+    taskTemp.splice(taskIndex, 1);
+    setTasks(taskTemp);
   }
 
-  function addTask(task){
+  function addTask(task) {
     const taskTemp = [...tasks];
     taskTemp.push(task);
-    setTasks(taskTemp)
-  }  
+    setTasks(taskTemp);
+  }
+
+
+  const TaskSection = () => {
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Level</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tasks.map((task, index) => {
+            return (
+              <TaskComponent
+                key={index}
+                task={task}
+                completed={updateCompleted}
+                remove={deleteTask}
+              ></TaskComponent>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
+
+  let taskRender;
+
+  if(tasks.length>0){
+    taskRender = <TaskSection></TaskSection>
+  }else{
+    taskRender = <h2>No hay tareas</h2>
+  }
+
 
 
   return (
     <div>
       <div className="col-12">
         <div className="card">
-
           <div className="card-header p-3">
             <h5>Your Task</h5>
           </div>
-
+          {taskRender}
           <div
             className="card-body"
             data-mdb-perfect-scrollbar="true"
             style={{ position: "relative", height: "400px" }}
-          >
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Title</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Level</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                {tasks.map((task,index)=>{
-                  return(
-                  <TaskComponent key={index} task={task} completed={updateCompleted} remove={deleteTask}>
-                  </TaskComponent>
-                  )
-                })}
-
-              </tbody>
-            </table>
-          </div>
-          
+          ></div>
         </div>
-        <TaskForm add={addTask} ></TaskForm>
+        <TaskForm add={addTask}></TaskForm>
       </div>
     </div>
   );

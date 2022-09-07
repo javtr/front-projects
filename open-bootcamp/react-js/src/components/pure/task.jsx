@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Task } from "../../models/task.class";
 import "../../styles/task.scss";
+import { Task } from "../../models/task.class";
 import { LEVELS } from "../../models/levels.enum";
 
 function TaskComponent({ task, completed, remove }) {
@@ -57,24 +57,34 @@ function TaskComponent({ task, completed, remove }) {
     }
   }
 
+  const taskCompletedStyle = {
+    color: "green",
+  };
+
+  const taskPendingStyle = {
+    color: "red",
+  };
+
+
+
   return (
-      <tr className="fw-normal">
-        <th>
-          <span className="ms-2">{task.name}</span>
-        </th>
-        <td className="align-middle">
-          <span>{task.description}</span>
-        </td>
-        <td className="align-middle">{taskLevelBadge()}</td>
-        <td className="align-middle">
-          {taskCompleted()}
-          <i
-            onClick={() => remove(task)}
-            className="bi-trash"
-            style={{ color: "tomato" }}
-          ></i>
-        </td>
-      </tr>
+    <tr style={task.completed? taskCompletedStyle:taskPendingStyle}>
+      <th>
+        <span className="ms-2">{task.name}</span>
+      </th>
+      <td className="align-middle">
+        <span>{task.description}</span>
+      </td>
+      <td className="align-middle">{taskLevelBadge()}</td>
+      <td className="align-middle">
+        {taskCompleted()}
+        <i
+          onClick={() => remove(task)}
+          className="bi-trash"
+          style={{ color: "tomato" }}
+        ></i>
+      </td>
+    </tr>
   );
 }
 
