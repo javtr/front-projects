@@ -57,18 +57,18 @@ function TaskComponent({ task, completed, remove }) {
     }
   }
 
-  const taskCompletedStyle = {
-    color: "green",
-  };
-
-  const taskPendingStyle = {
-    color: "red",
-  };
+  function styleConditional() {
+    if (task.completed) {
+      return "task-decoration task-completed"
+    } else {
+      return "task-pending"
+    }
+  }
 
 
 
   return (
-    <tr style={task.completed? taskCompletedStyle:taskPendingStyle}>
+    <tr className={styleConditional()}>
       <th>
         <span className="ms-2">{task.name}</span>
       </th>

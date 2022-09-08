@@ -96,7 +96,7 @@ const TaskListComponent = () => {
             style={{ position: "relative", height: "400px" }}
           ></div>
         </div>
-        <TaskForm add={addTask}></TaskForm>
+        <TaskForm add={addTask} countTask={tasks.length}></TaskForm>
       </div>
     </div>
   );
