@@ -4,6 +4,7 @@ import Father from "./components/container/father";
 import TaskListComponent from "./components/container/task_list";
 import Greetingstyled from "./components/greetingStiled";
 import LoginFormik from "./components/pure/forms/loginFormik";
+import RegisterFormik from "./components/pure/forms/registerFormik";
 
 
 
@@ -13,7 +14,8 @@ class App extends Component {
       <div className="App">
       {/* <Father></Father> */}
       {/* <TaskListComponent></TaskListComponent> */}
-      <LoginFormik></LoginFormik>
+      {/* <LoginFormik></LoginFormik> */}
+      <RegisterFormik></RegisterFormik>
       {/* <Greetingstyled name={"pepe"}></Greetingstyled> */}
       </div>
     );
