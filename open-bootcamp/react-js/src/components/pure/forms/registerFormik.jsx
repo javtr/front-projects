@@ -71,7 +71,6 @@ export default function RegisterFormik() {
               placeholder="Your username"
             />
 
-            {/* Username Errors */}
             {errors.username && touched.username && (
               <ErrorMessage name="username" component="div"></ErrorMessage>
             )}
@@ -84,7 +83,6 @@ export default function RegisterFormik() {
               placeholder="example@email.com"
             />
 
-            {/* Email Errors */}
             {errors.email && touched.email && (
               <ErrorMessage name="email" component="div"></ErrorMessage>
             )}
@@ -96,7 +94,7 @@ export default function RegisterFormik() {
               placeholder="password"
               type="password"
             />
-            {/* Password Errors */}
+
             {errors.password && touched.password && (
               <ErrorMessage name="password" component="div"></ErrorMessage>
             )}
@@ -108,7 +106,7 @@ export default function RegisterFormik() {
               placeholder="confirm passsword"
               type="password"
             />
-            {/* Confirm Password Errors */}
+            
             {errors.confirm && touched.confirm && (
               <ErrorMessage name="confirm" component="div"></ErrorMessage>
             )}
